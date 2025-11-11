@@ -87,7 +87,7 @@ def has_won(board, symbol):
 def game_is_over(board):
   return has_won(board, "X") or has_won(board, "O") or len(available_moves(board)) == 0
 
-def codecademy_evaluate_board(board):
+def cc_evaluate_board(board):
     if has_won(board, "X"):
       return float("Inf")
     elif has_won(board, "O"):
@@ -189,7 +189,7 @@ def count_streaks(board, symbol):
                     elif board[col][row - i] == " ":
                         break
                     else:
-                        num_in_streak == 0
+                        num_in_streak = 0
             if row < 3:
                 if num_in_streak + row < 4:
                     num_in_streak = 0
@@ -254,7 +254,7 @@ def play_game(ai):
                 good_move = True
         select_space(board, int(choice), "X")
         if not game_is_over(board):
-          result = minimax(board, False, ai, -float("Inf"), float("Inf"))
+          result = minimax(board, False, ai, -float("Inf"), float("Inf"), cc_evaluate_board)
           print("Computer chose: ", result[1])
           select_space(board, result[1], "O")
 
